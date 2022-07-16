@@ -9,3 +9,22 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  Id      String @id @default(uuid())
+  Auth0Id String @unique
+  Salary  Float
+  Bills   Bill[]
+}
+
+model Bill {
+  Id             String   @id @default(uuid())
+  Barcode        String?
+  Price          Float
+  Title          String
+  ExpirationDate DateTime
+  IsPaid         Boolean  @default(false)
+  created_at     DateTime @default(now())
+  user           User     @relation(fields: [userId], references: [Id])
+  userId         String   @unique
+}
