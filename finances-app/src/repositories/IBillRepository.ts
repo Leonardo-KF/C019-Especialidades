@@ -3,6 +3,8 @@ import { Bill } from 'src/entities/billEntity';
 export interface IBillRepository {
   createBill(bill: Bill): Promise<Bill>;
 
+  findAllBills(): Promise<Bill[]>;
+
   updateBill(
     id: string,
     bill: {
@@ -16,5 +18,5 @@ export interface IBillRepository {
 
   findBillById(id: string): Promise<Bill>;
 
-  delete: Promise<Bill>;
+  delete(id: string): Promise<Bill>;
 }

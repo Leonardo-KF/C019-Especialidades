@@ -6,7 +6,7 @@ services:
   database:
     image: 'bitnami/postgresql'
     ports:
-      - '5432:5432'
+      - '5433:5432'
     environment:
       - POSTGRESQL_USERNAME=user
       - POSTGRESQL_PASSWORD=qwer1234
