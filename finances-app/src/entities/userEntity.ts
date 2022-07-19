@@ -1,8 +1,8 @@
 import { Bill } from './billEntity';
 
 export type User = {
-  Id: string;
+  Id?: string;
   Auth0Id: string;
-  Salary: number;
+  Salary?: number;
   Bills?: Bill[];
 };

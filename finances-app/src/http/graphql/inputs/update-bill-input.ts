@@ -1,16 +1,16 @@
 import { Field, InputType } from '@nestjs/graphql';
 
 @InputType()
-export class CreateBillInput {
-  @Field()
+export class UpdateBillInput {
+  @Field({ nullable: true })
   Title: string;
-  @Field()
+  @Field({ nullable: true })
   Barcode: string;
-  @Field()
+  @Field({ nullable: true })
   Price: number;
-  @Field()
+  @Field({ nullable: true })
   ExpirationDate: Date;
-  @Field()
+  @Field({ nullable: true })
   IsPaid: boolean;
   @Field({ nullable: true })
   userId?: string;

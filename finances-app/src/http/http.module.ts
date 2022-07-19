@@ -4,11 +4,13 @@ import { DatabaseModule } from '../database/database.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { resolve } from 'node:path';
 import { ApolloDriver } from '@nestjs/apollo';
-import { TestResolver } from './test.resolver';
-import { TestResolver2 } from './test2.resolver';
+import { BillResolver } from './graphql/resolvers/bill.resolver';
+import { UserResolver } from './graphql/resolvers/user.resolver';
 import { BillsService } from 'src/services/bills.service';
 import { BillRepositoryInMemory } from 'src/repositories/BillRepositoryInMemory';
 import { BillRepositoryPostgres } from 'src/repositories/BillRepositoryPostgres';
+import { UsersService } from 'src/services/user.service';
+import { UserRepository } from 'src/repositories/UserRepositoryPostgres';
 
 @Module({
   imports: [
@@ -20,9 +22,14 @@ import { BillRepositoryPostgres } from 'src/repositories/BillRepositoryPostgres'
     }),
   ],
   providers: [
-    TestResolver,
-    TestResolver2,
+    //Resolvers
+    BillResolver,
+    UserResolver,
+    //Services
     BillsService,
+    UsersService,
+    // Repositories
+    UserRepository,
     BillRepositoryInMemory,
     BillRepositoryPostgres,
   ],

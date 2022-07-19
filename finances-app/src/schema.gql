@@ -16,13 +16,21 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type UserModel {
+  Id: ID!
+  Salary: Float!
+  Auth0Id: String!
+}
+
 type Query {
   allBills: [BillModel!]!
-  funcao: String!
+  me: UserModel!
 }
 
 type Mutation {
   createBill(data: CreateBillInput!): BillModel!
+  updateBill(id: String!, data: UpdateBillInput!): BillModel!
+  deleteBill(id: String!): BillModel!
 }
 
 input CreateBillInput {
@@ -31,5 +39,14 @@ input CreateBillInput {
   Price: Float!
   ExpirationDate: DateTime!
   IsPaid: Boolean!
-  userId: String!
+  userId: String
+}
+
+input UpdateBillInput {
+  Title: String
+  Barcode: String
+  Price: Float
+  ExpirationDate: DateTime
+  IsPaid: Boolean
+  userId: String
 }
