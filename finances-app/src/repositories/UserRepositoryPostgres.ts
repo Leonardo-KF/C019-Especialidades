@@ -7,6 +7,13 @@ import { IUserRepository } from './IUserRepository';
 @Injectable()
 export class UserRepository implements IUserRepository {
   constructor(private readonly prisma: PrismaService) {}
+  findUserById(id: string): Promise<User> {
+    try {
+      return this.prisma.user.findUnique({ where: { Id: id } });
+    } catch (err) {
+      console.log(err);
+    }
+  }
   createUser(user: User): Promise<User> {
     try {
       return this.prisma.user.create({ data: user });

@@ -12,11 +12,13 @@ import { BillRepositoryPostgres } from 'src/repositories/BillRepositoryPostgres'
 import { UsersService } from 'src/services/user.service';
 import { UserRepository } from 'src/repositories/UserRepositoryPostgres';
 import { ScheduleModule } from '@nestjs/schedule';
+import { MessagingModule } from 'src/messaging/messaging.module';
 
 @Module({
   imports: [
     ScheduleModule.forRoot(),
     ConfigModule.forRoot(),
+    MessagingModule,
     DatabaseModule,
     GraphQLModule.forRoot({
       driver: ApolloDriver,
