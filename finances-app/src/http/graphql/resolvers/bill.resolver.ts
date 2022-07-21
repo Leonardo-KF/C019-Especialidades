@@ -9,7 +9,7 @@ import { UpdateBillInput } from '../inputs/update-bill-input';
 import { BillModel } from '../models/bill.model';
 
 @UseGuards(AuthorizationGuard)
-@Resolver()
+@Resolver(() => BillModel)
 export class BillResolver {
   constructor(
     private billsService: BillsService,
@@ -28,7 +28,11 @@ export class BillResolver {
   ) {
     try {
       const user = await this.usersService.findByAuth0Id(auth0UserId.sub);
-      return await this.billsService.createBill({ ...data, userId: user.Id });
+      const bill = await this.billsService.createBill({
+        ...data,
+        userId: user.Id,
+      });
+      return bill;
     } catch {
       const user = await this.usersService.createUser({
         Auth0Id: auth0UserId.sub,

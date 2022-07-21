@@ -19,4 +19,8 @@ export interface IBillRepository {
   findBillById(id: string): Promise<Bill>;
 
   delete(id: string): Promise<Bill>;
+
+  findBillsByUser(userId: string): Promise<Bill[]>;
+
+  findBillsByExpirationIsToDay(): Promise<Bill[]>;
 }

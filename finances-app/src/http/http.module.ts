@@ -11,9 +11,11 @@ import { BillRepositoryInMemory } from 'src/repositories/BillRepositoryInMemory'
 import { BillRepositoryPostgres } from 'src/repositories/BillRepositoryPostgres';
 import { UsersService } from 'src/services/user.service';
 import { UserRepository } from 'src/repositories/UserRepositoryPostgres';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     ConfigModule.forRoot(),
     DatabaseModule,
     GraphQLModule.forRoot({

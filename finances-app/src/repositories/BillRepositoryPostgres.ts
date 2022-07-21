@@ -6,6 +6,26 @@ import { IBillRepository } from './IBillRepository';
 @Injectable()
 export class BillRepositoryPostgres implements IBillRepository {
   constructor(private readonly prisma: PrismaService) {}
+  findBillsByExpirationIsToDay(): Promise<Bill[]> {
+    try {
+      const currentDay =
+        new Date(Date.now()).toISOString().slice(0, 10) + 'T00:00:00Z';
+      return this.prisma.bill.findMany({
+        where: { ExpirationDate: currentDay },
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  findBillsByUser(userId: string): Promise<Bill[]> {
+    try {
+      return this.prisma.bill.findMany({ where: { userId } });
+    } catch (err) {
+      console.log(err);
+      throw new NotFoundException('user id not found');
+    }
+  }
   createBill(bill: Bill): Promise<Bill> {
     try {
       return this.prisma.bill.create({

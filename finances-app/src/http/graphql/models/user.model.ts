@@ -1,5 +1,5 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import { Bill } from 'src/entities/billEntity';
+import { BillModel } from './bill.model';
 
 @ObjectType()
 export class UserModel {
@@ -9,4 +9,6 @@ export class UserModel {
   Salary: number;
   @Field()
   Auth0Id: string;
+  @Field(() => [BillModel])
+  bills: BillModel[];
 }

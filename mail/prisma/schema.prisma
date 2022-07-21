@@ -1,0 +1,28 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Receiver {
+  id         String      @id @default(uuid())
+  name       String
+  email      String
+  auth0Id    String      @unique
+  created_at DateTime    @default(now())
+  sentMails  sentMails[]
+}
+
+model sentMails {
+  id         String   @id @default(uuid())
+  title      String
+  body       String
+  receiver   Receiver @relation(fields: [receiverId], references: [id])
+  receiverId String
+}

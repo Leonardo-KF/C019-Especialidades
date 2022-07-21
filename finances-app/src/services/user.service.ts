@@ -16,7 +16,7 @@ export class UsersService {
   }
   async findByAuth0Id(id: string) {
     const user = await this.userRepository.findUserByAuth0Id(id);
-    console.log(user);
+
     return user;
   }
 }

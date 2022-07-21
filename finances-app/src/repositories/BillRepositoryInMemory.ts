@@ -5,6 +5,12 @@ import { NotFoundException } from '@nestjs/common';
 import { randomUUID } from 'crypto';
 
 export class BillRepositoryInMemory implements IBillRepository {
+  findBillsByExpirationIsToDay(): Promise<Bill[]> {
+    throw new Error('Method not implemented.');
+  }
+  findBillsByUser(userId: string): Promise<Bill[]> {
+    throw new Error('Method not implemented.');
+  }
   findAllBills(): Promise<Bill[]> {
     return Promise.resolve(bills);
   }
