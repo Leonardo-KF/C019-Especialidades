@@ -21,11 +21,17 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
+    "@nestjs-modules/mailer": "^1.8.1",
     "@nestjs/axios": "^0.1.0",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/microservices": "^8.4.7",
     "@nestjs/platform-express": "^8.0.0",
     "@prisma/client": "^4.1.0",
+    "handlebars": "^4.7.7",
+    "kafkajs": "^2.1.0",
+    "nodemailer": "^6.7.7",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"

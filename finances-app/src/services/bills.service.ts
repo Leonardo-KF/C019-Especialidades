@@ -49,7 +49,7 @@ export class BillsService {
     return await this.billsRepository.findBillsByUser(userId);
   }
 
-  @Cron('* * 12 * * *')
+  @Cron('10 * * * * *')
   async findBillsByExpiration() {
     const bills = await this.billsRepository.findBillsByExpirationIsToDay();
     console.log(bills);
