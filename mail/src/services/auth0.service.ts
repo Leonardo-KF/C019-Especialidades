@@ -21,13 +21,6 @@ export class Auht0Service {
   }
 
   async getToken() {
-    console.log('rodou get token');
-    console.log(
-      this.AUTH0_AUDIENCE,
-      this.AUTH0_DOMAIN,
-      this.CLIENT_ID,
-      this.CLIENT_SECRET,
-    );
     const accessData = await lastValueFrom(
       this.httpService.post(this.AUTH0_DOMAIN + '/oauth/token', {
         client_id: this.CLIENT_ID,
@@ -36,7 +29,7 @@ export class Auht0Service {
         grant_type: 'client_credentials',
       }),
     );
-    console.log(accessData);
+
     return accessData.data.access_token;
   }
 
@@ -46,8 +39,6 @@ export class Auht0Service {
         headers: { Authorization: 'Bearer ' + token },
       }),
     );
-
-    console.log(user);
 
     const receiver = {
       auth0Id: auth0UserId,

@@ -31,9 +31,7 @@ export class BillsController {
 
   @EventPattern('financesApp.billsExpired')
   async sendMail(@Payload('value') payload: BillsExpiredPaylod) {
-    console.log('rodou');
     const token = await this.auth0.getToken();
-    console.log(token);
     const receiver = await this.auth0.getReceiverInfoByAuth0UserId(
       payload.user.auth0UserId,
       token,
@@ -68,5 +66,6 @@ export class BillsController {
       receiverId: receiverInDatabase.id,
       body: body,
     });
+    console.log('concluiu');
   }
 }
