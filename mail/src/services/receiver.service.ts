@@ -6,13 +6,17 @@ import { Receiver } from 'src/entities/receiver.entity';
 export class ReceiversService {
   constructor(private readonly prisma: PrismaService) {}
 
-  createReceiver(receiver: Receiver) {
-    return this.prisma.receiver.create({ data: receiver });
+  async createReceiver(receiver: Receiver) {
+    return await this.prisma.receiver.create({ data: receiver });
   }
 
-  updateReceiver(id: string, receiver: Receiver) {
-    return this.prisma.receiver.update({ where: { id }, data: receiver });
+  async updateReceiver(id: string, receiver: Receiver) {
+    return await this.prisma.receiver.update({ where: { id }, data: receiver });
   }
 
-  async getToken() {}
+  async findReceiverByAuth0Id(Auth0Id: string) {
+    return await this.prisma.receiver.findUnique({
+      where: { auth0Id: Auth0Id },
+    });
+  }
 }

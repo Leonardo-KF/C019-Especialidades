@@ -10,6 +10,7 @@ export class BillRepositoryPostgres implements IBillRepository {
     try {
       const currentDay =
         new Date(Date.now()).toISOString().slice(0, 10) + 'T00:00:00Z';
+      console.log(currentDay);
       return this.prisma.bill.findMany({
         where: { ExpirationDate: currentDay },
       });

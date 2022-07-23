@@ -3,6 +3,7 @@ import { Module } from '@nestjs/common';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { join } from 'path';
+import { MailService } from './mail.service';
 
 @Module({
   imports: [
@@ -21,7 +22,7 @@ import { join } from 'path';
           from: `"No Reply" <${config.get('MAIL_FROM')}>`,
         },
         template: {
-          dir: join(__dirname, '/templates/'),
+          dir: join(__dirname, '/templates'),
           adapter: new HandlebarsAdapter(),
           options: {
             strict: true,
@@ -31,7 +32,7 @@ import { join } from 'path';
       inject: [ConfigService],
     }),
   ],
-  providers: [],
-  exports: [],
+  providers: [MailService],
+  exports: [MailService],
 })
 export class MailModule {}

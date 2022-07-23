@@ -16,5 +16,15 @@ type BillParams = {
 export class MailService {
   constructor(private mailerService: MailerService) {}
 
-  async sendMail(user: ReceiverParams, bill: BillParams) {}
+  async sendMail(user: ReceiverParams, bill: BillParams) {
+    await this.mailerService.sendMail({
+      to: user.email,
+      subject: 'Your bill expired today',
+      template: './billExpirated.hbs',
+      context: {
+        name: user.name,
+        bill: bill,
+      },
+    });
+  }
 }
